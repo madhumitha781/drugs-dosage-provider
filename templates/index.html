@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Drug Info via DBSCAN</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Drug Info lookup (DBSCAN)</h1>
+    <p>Enter a drug name (partial or full). We'll return indications, side effects, dosage and similar drugs in the same cluster.</p>
+
+    <form action="{{ url_for('result') }}" method="post">
+      <input type="text" name="drug_name" placeholder="e.g. Seroxetine50" required>
+      <button type="submit">Lookup</button>
+    </form>
+  </div>
+</body>
+</html>

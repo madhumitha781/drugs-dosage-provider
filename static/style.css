@@ -1,0 +1,11 @@
+body { font-family: Arial, sans-serif; background:#f4f6fb; color:#222; }
+.container { width:90%; max-width:900px; margin:30px auto; background:white; padding:20px 24px; border-radius:8px; box-shadow:0 6px 20px rgba(0,0,0,0.06); }
+h1 { text-align:center; margin-top:0; }
+form { text-align:center; margin-top:12px; }
+input[type=text] { width:70%; padding:10px; border:1px solid #ccc; border-radius:6px; }
+button { padding:10px 14px; margin-left:8px; border:none; background:#1976d2; color:white; border-radius:6px; cursor:pointer;}
+button:hover { background:#135ab7; }
+table { width:100%; border-collapse:collapse; margin-top:12px; }
+table.info td, table.info th { padding:8px; border-bottom:1px dashed #ddd; text-align:left; }
+table td, table th { border:1px solid #e6e9ee; padding:8px; text-align:left; }
+.error { color:red; text-align:center; }

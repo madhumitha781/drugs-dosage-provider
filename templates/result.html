@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Drug Lookup Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Results for "{{ query }}"</h1>
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+      <p><a href="{{ url_for('index') }}">Search again</a></p>
+    {% else %}
+      <h2>Primary drug info</h2>
+      <table class="info">
+        {% for k,v in fields.items() %}
+          <tr><th>{{ k.replace('_', ' ').title() }}</th><td>{{ v }}</td></tr>
+        {% endfor %}
+      </table>
+
+      <p><strong>Cluster id:</strong> {{ cluster_id }}</p>
+
+      {% if dosage_stats %}
+        <h3>Dosage stats for this cluster</h3>
+        <ul>
+          <li>Mean dosage (mg): {{ "%.1f"|format(dosage_stats.mean) if dosage_stats.mean is defined else dosage_stats['mean'] }}</li>
+          <li>Std (mg): {{ "%.1f"|format(dosage_stats.std) if dosage_stats.std is defined else dosage_stats['std'] }}</li>
+          <li>Suggested dosage limit (cluster mean + 1 std): {{ "%.1f"|format(dosage_stats.suggested_limit) }}</li>
+        </ul>
+      {% endif %}
+
+      <h3>Similar drugs (same cluster)</h3>
+      {% if similar %}
+        <table>
+          <tr><th>Drug</th><th>Class</th><th>Dosage_mg</th><th>Side effects</th></tr>
+          {% for r in similar %}
+            <tr>
+              <td>{{ r.drug_name }}</td>
+              <td>{{ r.drug_class }}</td>
+              <td>{{ r.dosage_mg }}</td>
+              <td>{{ r.side_effects }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <p>No similar drugs found in same cluster.</p>
+      {% endif %}
+
+      <p><a href="{{ url_for('index') }}">Search another</a></p>
+    {% endif %}
+  </div>
+</body>
+</html>
